@@ -1,7 +1,7 @@
 batch:
   scheduler:
-    test: 0/5 * * * * ?
-    employee: 0/5 * * * *
+    test: 0 0/15 * * * ?
+    employee: 0 0 18 * * ?
   
 spring:
   batch:

@@ -2,6 +2,8 @@ package core.batch.config;
 
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -27,6 +29,7 @@ import core.batch.processor.EmployeeProcessor;
 @Configuration
 @EnableBatchProcessing
 public class BatchConfig {
+	private static final Logger LOGGER = LoggerFactory.getLogger(BatchConfig.class);
 
 	@Autowired
 	public JobBuilderFactory jobBuilderFactory;
@@ -39,9 +42,14 @@ public class BatchConfig {
 
 	@Bean
 	public FlatFileItemReader<Employee> reader() {
+		LOGGER.info("Entry :: BatchConfig.class :: reader()");
 		FlatFileItemReader<Employee> reader = new FlatFileItemReader<Employee>();
+		/*
+		 * if (!new ClassPathResource("employee.csv").exists()) { reader = null;
+		 * LOGGER.warn("Employee :: reader() file not found"); return reader; }
+		 */
 		reader.setResource(new ClassPathResource("employee.csv"));
-
+		
 		reader.setLineMapper(new DefaultLineMapper<Employee>() {
 			{
 				setLineTokenizer(new DelimitedLineTokenizer() {
