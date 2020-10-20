@@ -26,6 +26,29 @@ public class EmployeeDTO {
 		this.zip = zip;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("EmployeeDTO [\"firstName\"=\"");
+		builder.append(firstName);
+		builder.append("\", \"lastName\"=\"");
+		builder.append(lastName);
+		builder.append("\", \"companyName\"=\"");
+		builder.append(companyName);
+		builder.append("\", \"address\"=\"");
+		builder.append(address);
+		builder.append("\", \"city\"=\"");
+		builder.append(city);
+		builder.append("\", \"county\"=\"");
+		builder.append(county);
+		builder.append("\", \"state\"=\"");
+		builder.append(state);
+		builder.append("\", \"zip\"=\"");
+		builder.append(zip);
+		builder.append("\"]");
+		return builder.toString();
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
